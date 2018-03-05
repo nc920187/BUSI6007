@@ -21,16 +21,17 @@ Declaration(Class(:Building_Object))
 Declaration(Class(:Burst_assualt_rifle))
 Declaration(Class(:Bush))
 Declaration(Class(:Chug_jug))
+Declaration(Class(:Common))
 Declaration(Class(:Consumables))
 Declaration(Class(:Cozy_campfire))
 Declaration(Class(:Crossbow))
 Declaration(Class(:Damage_trap))
 Declaration(Class(:Epic))
-Declaration(Class(:Explosive))
-Declaration(Class(:Explosive_grenade))
+Declaration(Class(:Explosive_Launchers))
 Declaration(Class(:Floor))
 Declaration(Class(:Grenade))
 Declaration(Class(:Grenade_Launcher))
+Declaration(Class(:Grenades))
 Declaration(Class(:Hand_Cannon))
 Declaration(Class(:Heavy_ammo))
 Declaration(Class(:Hunting_rifle))
@@ -47,6 +48,7 @@ Declaration(Class(:Pistols))
 Declaration(Class(:Pump_shotgun))
 Declaration(Class(:Ramp))
 Declaration(Class(:Rare))
+Declaration(Class(:Rarity))
 Declaration(Class(:Revolver))
 Declaration(Class(:Rocket_launcher))
 Declaration(Class(:Rockets))
@@ -66,21 +68,18 @@ Declaration(Class(:Steel))
 Declaration(Class(:Suppressed_pistol))
 Declaration(Class(:Suppressed_submachine_gun))
 Declaration(Class(:Tactical_shotgun))
+Declaration(Class(:Uncommon))
 Declaration(Class(:Wall))
 Declaration(Class(:Weapons))
 Declaration(Class(:Wood))
-Declaration(Class(:common))
-Declaration(Class(:epic))
-Declaration(Class(:legendary))
-Declaration(Class(:rare))
 Declaration(Class(:tactical_submachine_gun))
-Declaration(Class(:uncommon))
 Declaration(Class(<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>))
 Declaration(ObjectProperty(:hasRarity))
 Declaration(ObjectProperty(:isMadeOf))
 Declaration(ObjectProperty(:isTypeOf))
 Declaration(ObjectProperty(:isUsedBy))
 Declaration(ObjectProperty(:isUsedToMake))
+Declaration(ObjectProperty(:placed_on))
 Declaration(ObjectProperty(:uses))
 
 ############################
@@ -89,7 +88,9 @@ Declaration(ObjectProperty(:uses))
 
 # Object Property: :hasRarity (:hasRarity)
 
+FunctionalObjectProperty(:hasRarity)
 ObjectPropertyDomain(:hasRarity :Weapons)
+ObjectPropertyRange(:hasRarity :Rarity)
 
 # Object Property: :isMadeOf (:isMadeOf)
 
@@ -114,341 +115,362 @@ ObjectPropertyDomain(:uses :Weapons)
 ObjectPropertyRange(:uses :Ammo)
 
 
+
 ############################
 #   Classes
 ############################
 
 # Class: :Ammo (:Ammo)
 
+AnnotationAssertion(rdfs:isDefinedBy :Ammo "Ammo is used by many of the weapons in the game.")
 
 # Class: :Assault_Rifle (:Assault_Rifle)
 
+AnnotationAssertion(rdfs:isDefinedBy :Assault_Rifle "These are the most versatile weapons for players to use. These are best used at medium range and use medium ammo.")
 SubClassOf(:Assault_Rifle :Weapons)
 
 # Class: :Assault_rifle_with_scope (:Assault_rifle_with_scope)
 
+AnnotationAssertion(rdfs:isDefinedBy :Assault_rifle_with_scope "This assault rifle is equipped with a scope. This makes it more accurate for players at the cost of a slower firing speed.")
 SubClassOf(:Assault_rifle_with_scope :Assault_Rifle)
 
 # Class: :Bandages (:Bandages)
 
+AnnotationAssertion(rdfs:isDefinedBy :Bandages "These items restore 15 health to players but will not restore players health beyond 75 hit points. A maximum of 15 bandages can be carried at once.")
 SubClassOf(:Bandages :Consumables)
 
 # Class: :Bolt_action_sniper_rifle (:Bolt_action_sniper_rifle)
 
+AnnotationAssertion(rdfs:isDefinedBy :Bolt_action_sniper_rifle "This single shot rifle fires very slowly and benefits from a scope for long range engagements.")
 SubClassOf(:Bolt_action_sniper_rifle :Sniper_rifles)
 DisjointClasses(:Bolt_action_sniper_rifle :Semi_auto_sniper_rifle)
 
 # Class: :Boogie_bomb (:Boogie_bomb)
 
-SubClassOf(:Boogie_bomb :Grenade)
+AnnotationAssertion(rdfs:isDefinedBy :Boogie_bomb "This grenade detonates on impact and causes players to dance uncontrollably if they are within range.")
+SubClassOf(:Boogie_bomb :Grenades)
 
 # Class: :Brick (:Brick)
 
+AnnotationAssertion(rdfs:isDefinedBy :Brick "This is the second strongest building material and is collected from destroying rocks or existing brick buildings.")
 SubClassOf(:Brick :Building_Material)
 
 # Class: :Building_Material (:Building_Material)
 
+AnnotationAssertion(rdfs:isDefinedBy :Building_Material "Building materials are collected from destroying existing world elements, such as trees. These materials are then able to create building objects.")
 
 # Class: :Building_Object (:Building_Object)
 
+AnnotationAssertion(rdfs:isDefinedBy :Building_Object "Players are capable of creating buildings out of 4 different objects. These provide protection from other players.
+
+Each of these objects can be made of either wood, brick, or steel.")
 
 # Class: :Burst_assualt_rifle (:Burst_assualt_rifle)
 
+AnnotationAssertion(rdfs:isDefinedBy :Burst_assualt_rifle "This weapon exclusively fires in bursts of 3.")
 SubClassOf(:Burst_assualt_rifle :Assault_Rifle)
 
 # Class: :Bush (:Bush)
 
+AnnotationAssertion(rdfs:isDefinedBy :Bush "This consumable allows players to create a bush around them that camoflages them from enemies. This is a great way to avoid being seen.")
 SubClassOf(:Bush :Consumables)
 
 # Class: :Chug_jug (:Chug_jug)
 
+AnnotationAssertion(rdfs:isDefinedBy :Chug_jug "This consumable requires the longest consumption  time of 15 seconds, during which players are unable to move. This restores a players full 100 hit points as well as generates 100 shield points.")
 SubClassOf(:Chug_jug :Consumables)
+
+# Class: :Common (:Common)
+
+AnnotationAssertion(rdfs:isDefinedBy :Common "The most frequently found and basic items. Weapons of this rarity are level 1.")
+SubClassOf(:Common :Rarity)
 
 # Class: :Consumables (:Consumables)
 
+AnnotationAssertion(rdfs:isDefinedBy :Consumables "These items are collected by players and allow them to do various things such as regain health, generate a protective shield and more. To use these items it requires the player to stand still for an amount of time specific to the item.")
 
 # Class: :Cozy_campfire (:Cozy_campfire)
 
+AnnotationAssertion(rdfs:isDefinedBy :Cozy_campfire "This item must be placed on a floor and provides players with healing over time when they stand near it.")
 SubClassOf(:Cozy_campfire <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+SubClassOf(:Cozy_campfire ObjectSomeValuesFrom(:placed_on :Floor))
 
 # Class: :Crossbow (:Crossbow)
 
+AnnotationAssertion(rdfs:isDefinedBy :Crossbow "This weapon is silent in its operation and acts very similarly to a sniper rifle. It has unlimited ammo and does not require the player to collect ammo for it.")
 SubClassOf(:Crossbow :Other)
 
 # Class: :Damage_trap (:Damage_trap)
 
+AnnotationAssertion(rdfs:isDefinedBy :Damage_trap "This spike trap must be placed on a floor or ceiling and damages enemy players when they approach it.")
 SubClassOf(:Damage_trap <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+SubClassOf(:Damage_trap ObjectSomeValuesFrom(:placed_on :Floor))
+SubClassOf(:Damage_trap ObjectSomeValuesFrom(:placed_on :Wall))
 
 # Class: :Epic (:Epic)
 
-SubClassOf(:Epic :Bolt_action_sniper_rifle)
-SubClassOf(:Epic :Semi_auto_sniper_rifle)
-DisjointClasses(:Epic :Legendary)
+AnnotationAssertion(rdfs:isDefinedBy :Epic "This items are very uncommon within the game and represent the second most rare items. Weapons of this rarity are level 4.")
+SubClassOf(:Epic :Rarity)
 
-# Class: :Explosive (:Explosive)
+# Class: :Explosive_Launchers (:Explosive_Launchers)
 
-SubClassOf(:Explosive :Weapons)
-
-# Class: :Explosive_grenade (:Explosive_grenade)
-
-SubClassOf(:Explosive_grenade :Grenade)
+AnnotationAssertion(rdfs:isDefinedBy :Explosive_Launchers "These weapons use rockets as ammo and deal damage to players through explosions.")
+SubClassOf(:Explosive_Launchers :Weapons)
 
 # Class: :Floor (:Floor)
 
+AnnotationAssertion(rdfs:isDefinedBy :Floor "A floor is a square object that players are able to place in the world. These building objects are useful as they allow players to use traps and equipment.")
 SubClassOf(:Floor :Building_Object)
 
 # Class: :Grenade (:Grenade)
 
-SubClassOf(:Grenade :Grenade)
-SubClassOf(:Grenade :Weapons)
+AnnotationAssertion(rdfs:isDefinedBy :Grenade "This is a standard explosive grenade")
+SubClassOf(:Grenade :Grenades)
 
 # Class: :Grenade_Launcher (:Grenade_Launcher)
 
-SubClassOf(:Grenade_Launcher :Explosive)
+AnnotationAssertion(rdfs:isDefinedBy :Grenade_Launcher "This is a short range weapon that is useful in destroying buildings")
+SubClassOf(:Grenade_Launcher :Explosive_Launchers)
 DisjointClasses(:Grenade_Launcher :Rocket_launcher)
+
+# Class: :Grenades (:Grenades)
+
+AnnotationAssertion(rdfs:isDefinedBy :Grenades "These are throwable weapons")
+SubClassOf(:Grenades :Weapons)
 
 # Class: :Hand_Cannon (:Hand_Cannon)
 
+AnnotationAssertion(rdfs:isDefinedBy :Hand_Cannon "This is the slowest shooting pistol but has the highest damage per shot. It uses heavy ammo.")
 SubClassOf(:Hand_Cannon :Pistols)
 
 # Class: :Heavy_ammo (:Heavy_ammo)
 
+AnnotationAssertion(rdfs:isDefinedBy :Heavy_ammo "This ammo is used in weapons such as the hand cannon and sniper rifles.")
 SubClassOf(:Heavy_ammo :Ammo)
 
 # Class: :Hunting_rifle (:Hunting_rifle)
 
+AnnotationAssertion(rdfs:isDefinedBy :Hunting_rifle "This single shot weapon lacks a scope and is the least accurate of the three snipers.")
 SubClassOf(:Hunting_rifle :Sniper_rifles)
 
 # Class: :Impulse_grenade (:Impulse_grenade)
 
-SubClassOf(:Impulse_grenade :Grenade)
+AnnotationAssertion(rdfs:isDefinedBy :Impulse_grenade "This grenade explodes on impact and throws players away from the blast")
+SubClassOf(:Impulse_grenade :Grenades)
 
 # Class: :Launch_pad (:Launch_pad)
 
+AnnotationAssertion(rdfs:isDefinedBy :Launch_pad "This equipment is required to be placed on a floor and launches players into the air when stepped on. It is useful in moving around the world quickly.")
 SubClassOf(:Launch_pad <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+SubClassOf(:Launch_pad ObjectSomeValuesFrom(:placed_on :Floor))
 
 # Class: :Legendary (:Legendary)
 
-SubClassOf(:Legendary :Bolt_action_sniper_rifle)
-SubClassOf(:Legendary :Semi_auto_sniper_rifle)
+AnnotationAssertion(rdfs:comment :Legendary "These are exceedingly rare items and are highly unlikely to be found. These items posses the greatest benefit to the player. Weapons of this rarity are level 5.")
+SubClassOf(:Legendary :Rarity)
 
 # Class: :M16 (:M16)
 
+AnnotationAssertion(rdfs:isDefinedBy :M16 "This is a classic assault rifle with a moderate fire rate")
 SubClassOf(:M16 :Assault_Rifle)
 
 # Class: :Med_kit (:Med_kit)
 
+AnnotationAssertion(rdfs:isDefinedBy :Med_kit "This consumable improves upon bandages by refilling a players entire 100 hit points.")
 SubClassOf(:Med_kit :Consumables)
 
 # Class: :Medium_ammo (:Medium_ammo)
 
+AnnotationAssertion(rdfs:isDefinedBy :Medium_ammo "This ammo is commonly found in the environment and is used in weapons such as assault rifles and the revolver.")
 SubClassOf(:Medium_ammo :Ammo)
 
 # Class: :Minigun (:Minigun)
 
+AnnotationAssertion(rdfs:isDefinedBy :Minigun "This weapon is unique as it does not require the player to reload or stop shooting. Effective at damaging buildings. Uses small ammo.")
 SubClassOf(:Minigun :Other)
 
 # Class: :Other (:Other)
 
+AnnotationAssertion(rdfs:isDefinedBy :Other "These weapons are unique to others and do not classify with other weapon types.")
 SubClassOf(:Other :Weapons)
 
 # Class: :Pistol (:Pistol)
 
+AnnotationAssertion(rdfs:isDefinedBy :Pistol "This weapon does minimal damage but shoots quickly. Uses small ammo.")
 SubClassOf(:Pistol :Pistols)
+SubClassOf(:Pistol ObjectSomeValuesFrom(:hasRarity :Common))
+SubClassOf(:Pistol ObjectSomeValuesFrom(:hasRarity :Rare))
+SubClassOf(:Pistol ObjectSomeValuesFrom(:hasRarity :Uncommon))
+SubClassOf(:Pistol ObjectSomeValuesFrom(:uses :Small_ammo))
 
 # Class: :Pistols (:Pistols)
 
-SubClassOf(:Pistols :Pistols)
+AnnotationAssertion(rdfs:isDefinedBy :Pistols "Is a weapon subclass that can be operated using one hand. These are best served when players use them at short range.")
 SubClassOf(:Pistols :Weapons)
 
 # Class: :Pump_shotgun (:Pump_shotgun)
 
+AnnotationAssertion(rdfs:isDefinedBy :Pump_shotgun "This shotgun is characterized by its slightly longer range and slow follow up shots.")
 SubClassOf(:Pump_shotgun :Shotgun)
 DisjointClasses(:Pump_shotgun :Tactical_shotgun)
 
 # Class: :Ramp (:Ramp)
 
+AnnotationAssertion(rdfs:isDefinedBy :Ramp "the ramp is a square platform that is on a 45 degree angle. This allows players to access areas that would otherwise be out of reach.")
 SubClassOf(:Ramp :Building_Object)
 
 # Class: :Rare (:Rare)
 
-SubClassOf(:Rare :Bolt_action_sniper_rifle)
+AnnotationAssertion(rdfs:isDefinedBy :Rare "This is the third most common rarity of item. The stats are superior to that of common and uncommon items. Weapons of this rarity are level 3.")
+SubClassOf(:Rare :Rarity)
+
+# Class: :Rarity (:Rarity)
+
+AnnotationAssertion(rdfs:isDefinedBy :Rarity "Rarity deals with how common the weapon or equipment is found within the player environment. It also has an effect on the statistics of the weapon or equipment.
+
+For example, a common weapon will be found more frequently but will have inferior attributes than the same legendary weapon.
+
+When referring to their rarity, weapons are also rated using a level system. These levels range from 1 to 5, where 1 is common and 5 is legendary.")
+SubClassOf(:Rarity ObjectSomeValuesFrom(:hasRarity :Rarity))
 
 # Class: :Revolver (:Revolver)
 
+AnnotationAssertion(rdfs:isDefinedBy :Revolver "This is the second slowest firing pistol and has the second highest damage output. It uses medium ammo.")
 SubClassOf(:Revolver :Pistols)
 
 # Class: :Rocket_launcher (:Rocket_launcher)
 
-SubClassOf(:Rocket_launcher :Explosive)
+AnnotationAssertion(rdfs:isDefinedBy :Rocket_launcher "This weapon has unlimited range and is effective against buildings.")
+SubClassOf(:Rocket_launcher :Explosive_Launchers)
 
 # Class: :Rockets (:Rockets)
 
+AnnotationAssertion(rdfs:isDefinedBy :Rockets "These are an explosive ammo type and used for weapons such as the rocket launcher and grenade launcher.")
 SubClassOf(:Rockets :Ammo)
 
 # Class: :Roof (:Roof)
 
+AnnotationAssertion(rdfs:isDefinedBy :Roof "These are pyramid shaped building pieces that interface with walls ramps and floors to provide players with extra protection.")
 SubClassOf(:Roof :Building_Object)
 
 # Class: :SCAR (:SCAR)
 
+AnnotationAssertion(rdfs:isDefinedBy :SCAR "This is the most effective assualt rifle in the game with a moderate fire rate, good accuracy, and high damage output.")
 SubClassOf(:SCAR :Assault_Rifle)
 
 # Class: :SMG (:SMG)
 
+AnnotationAssertion(rdfs:isDefinedBy :SMG "These are defined by their compact shape and highly rapid follow up shots. Typically their damage per shot is less than that of other weapons but this is made up for in their high rate of fire. These weapons use small ammo.")
 SubClassOf(:SMG :Weapons)
 
 # Class: :Semi_auto_sniper_rifle (:Semi_auto_sniper_rifle)
 
+AnnotationAssertion(rdfs:isDefinedBy :Semi_auto_sniper_rifle "This sniper is the only weapon to hold more than one shot and also benefits from a scope.")
 SubClassOf(:Semi_auto_sniper_rifle :Sniper_rifles)
 
 # Class: :Shield_potion (:Shield_potion)
 
+AnnotationAssertion(rdfs:isDefinedBy :Shield_potion "This potion grants players a 50 hit point protrective shield.")
 SubClassOf(:Shield_potion :Consumables)
 
 # Class: :Shotgun (:Shotgun)
 
+AnnotationAssertion(rdfs:isDefinedBy :Shotgun "These weapons are useful as they require less accuracy from the player and have very high damage potential. They use shotgun ammo. These are most effective and very short range.")
 SubClassOf(:Shotgun :Weapons)
 
 # Class: :Shotgun_ammo (:Shotgun_ammo)
 
+AnnotationAssertion(rdfs:isDefinedBy :Shotgun_ammo "This ammo is used by shotguns.")
 SubClassOf(:Shotgun_ammo :Ammo)
 
 # Class: :Slurp_juice (:Slurp_juice)
 
+AnnotationAssertion(rdfs:isDefinedBy :Slurp_juice "This potion provides players with healing over time. It provides players with 25 hit points to their health and 25 hit points to their shield. 
+
+Hit points are gained at a rate of 1 per second.")
 SubClassOf(:Slurp_juice :Consumables)
 
 # Class: :Small_ammo (:Small_ammo)
 
+AnnotationAssertion(rdfs:isDefinedBy :Small_ammo "These are the smallest type of ammo in the game and used by weapons such as some pistols and the minigun")
 SubClassOf(:Small_ammo :Ammo)
 
 # Class: :Small_shield_potion (:Small_shield_potion)
 
+AnnotationAssertion(rdfs:isDefinedBy :Small_shield_potion "These shield potions grant players with 25 shield hit points each. Similar to bandages, these potions are unable to give players more than 50 shield hit points.")
 SubClassOf(:Small_shield_potion :Consumables)
 
 # Class: :Smoke_grenade (:Smoke_grenade)
 
-SubClassOf(:Smoke_grenade :Grenade)
+AnnotationAssertion(rdfs:isDefinedBy :Smoke_grenade "This grenade generates a cloud of smoke, blocking visibility from others")
+SubClassOf(:Smoke_grenade :Grenades)
 
 # Class: :Sniper_rifles (:Sniper_rifles)
 
+AnnotationAssertion(rdfs:isDefinedBy :Sniper_rifles "These are long range weapons that use heavy ammo. These have among the highest damage per shot and require players to properly time their shots based on the weapons projectile behaviour.")
 SubClassOf(:Sniper_rifles :Weapons)
 
 # Class: :Steel (:Steel)
 
+AnnotationAssertion(rdfs:isDefinedBy :Steel "This is the strongest building material and is collected from destroying objects such as shipping containers.")
 SubClassOf(:Steel :Building_Material)
 
 # Class: :Suppressed_pistol (:Suppressed_pistol)
 
+AnnotationAssertion(rdfs:isDefinedBy :Suppressed_pistol "This pistol is similar to the regular pistol, however, it is nearly silent when used. This is useful in keeping yourself hidden. This pistol uses small ammo.")
 SubClassOf(:Suppressed_pistol :Pistols)
 
 # Class: :Suppressed_submachine_gun (:Suppressed_submachine_gun)
 
+AnnotationAssertion(rdfs:isDefinedBy :Suppressed_submachine_gun "Like the silenced pistol, this submachine gun operates silently and allows the player to stay hidden. It uses small ammo.")
 SubClassOf(:Suppressed_submachine_gun :SMG)
 
 # Class: :Tactical_shotgun (:Tactical_shotgun)
 
+AnnotationAssertion(rdfs:isDefinedBy :Tactical_shotgun "This shotgun allows players to have more rapid follow up shots at the expense of less damage and shorter range.")
 SubClassOf(:Tactical_shotgun :Shotgun)
+
+# Class: :Uncommon (:Uncommon)
+
+AnnotationAssertion(rdfs:isDefinedBy :Uncommon "This is the second most common item with slightly improved statistics. Weapons of this rarity are level 2.")
+SubClassOf(:Uncommon :Rarity)
 
 # Class: :Wall (:Wall)
 
+AnnotationAssertion(rdfs:isDefinedBy :Wall "Walls are vertical square objects that help protect players and act to support other building objects that may be placed on top of them.")
 SubClassOf(:Wall :Building_Object)
 
 # Class: :Weapons (:Weapons)
 
+AnnotationAssertion(rdfs:isDefinedBy :Weapons "These are tools used by players to help achieve the objective of the game: be the final player standing out of a group of 100.")
 
 # Class: :Wood (:Wood)
 
+AnnotationAssertion(rdfs:isDefinedBy :Wood "This is the weakest building material and is collected from destroying things like trees.")
 SubClassOf(:Wood :Building_Material)
-
-# Class: :common (:common)
-
-SubClassOf(:common :Burst_assualt_rifle)
-SubClassOf(:common :Explosive_grenade)
-SubClassOf(:common :M16)
-SubClassOf(:common :Pistol)
-SubClassOf(:common :Pump_shotgun)
-SubClassOf(:common :Revolver)
-SubClassOf(:common :Suppressed_submachine_gun)
-DisjointClasses(:common :uncommon)
-
-# Class: :epic (:epic)
-
-SubClassOf(:epic :Assault_rifle_with_scope)
-SubClassOf(:epic :Crossbow)
-SubClassOf(:epic :Grenade_Launcher)
-SubClassOf(:epic :Hand_Cannon)
-SubClassOf(:epic :Minigun)
-SubClassOf(:epic :Rocket_launcher)
-SubClassOf(:epic :SCAR)
-SubClassOf(:epic :Suppressed_pistol)
-SubClassOf(:epic :Tactical_shotgun)
-SubClassOf(:epic :tactical_submachine_gun)
-DisjointClasses(:epic :legendary)
-DisjointClasses(:epic :rare)
-
-# Class: :legendary (:legendary)
-
-SubClassOf(:legendary :Grenade_Launcher)
-SubClassOf(:legendary :Hand_Cannon)
-SubClassOf(:legendary :Minigun)
-SubClassOf(:legendary :Rocket_launcher)
-SubClassOf(:legendary :SCAR)
-SubClassOf(:legendary :Smoke_grenade)
-SubClassOf(:legendary :Suppressed_pistol)
-SubClassOf(:legendary :tactical_submachine_gun)
-
-# Class: :rare (:rare)
-
-SubClassOf(:rare :Assault_rifle_with_scope)
-SubClassOf(:rare :Boogie_bomb)
-SubClassOf(:rare :Burst_assualt_rifle)
-SubClassOf(:rare :Crossbow)
-SubClassOf(:rare :Grenade_Launcher)
-SubClassOf(:rare :Hunting_rifle)
-SubClassOf(:rare :Impulse_grenade)
-SubClassOf(:rare :M16)
-SubClassOf(:rare :Pistol)
-SubClassOf(:rare :Revolver)
-SubClassOf(:rare :Rocket_launcher)
-SubClassOf(:rare :Suppressed_submachine_gun)
-SubClassOf(:rare :Tactical_shotgun)
-SubClassOf(:rare :tactical_submachine_gun)
-DisjointClasses(:rare :uncommon)
 
 # Class: :tactical_submachine_gun (:tactical_submachine_gun)
 
+AnnotationAssertion(rdfs:isDefinedBy :tactical_submachine_gun "This weapon benefits from a very fast fire rate and is most effective at very close range.")
 SubClassOf(:tactical_submachine_gun :SMG)
-
-# Class: :uncommon (:uncommon)
-
-SubClassOf(:uncommon :Burst_assualt_rifle)
-SubClassOf(:uncommon :Hunting_rifle)
-SubClassOf(:uncommon :M16)
-SubClassOf(:uncommon :Pistol)
-SubClassOf(:uncommon :Pump_shotgun)
-SubClassOf(:uncommon :Revolver)
-SubClassOf(:uncommon :Suppressed_submachine_gun)
-SubClassOf(:uncommon :Tactical_shotgun)
 
 # Class: <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment> (<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 
+AnnotationAssertion(rdfs:isDefinedBy <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment> "These items are placeable by players into the world and provide unique interactions.")
 
 
+DisjointClasses(:Ammo :Building_Material :Building_Object :Consumables :Rarity :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 DisjointClasses(:Ammo :Building_Material :Building_Object :Consumables :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
-DisjointClasses(:Assault_Rifle :Explosive :Grenade :Other :Pistols :SMG :Shotgun :Sniper_rifles)
+DisjointClasses(:Assault_Rifle :Explosive_Launchers :Grenades :Other :Pistols :SMG :Shotgun :Sniper_rifles)
 DisjointClasses(:Assault_rifle_with_scope :Burst_assualt_rifle :M16 :SCAR)
 DisjointClasses(:Bandages :Bush :Chug_jug :Med_kit :Shield_potion :Slurp_juice :Small_shield_potion)
-DisjointClasses(:Boogie_bomb :Grenade :Impulse_grenade :Smoke_grenade)
+DisjointClasses(:Boogie_bomb :Grenades :Impulse_grenade :Smoke_grenade)
 DisjointClasses(:Brick :Steel :Wood)
 DisjointClasses(:Building_Material :Building_Object :Consumables :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 DisjointClasses(:Building_Material :Building_Object :Consumables <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+DisjointClasses(:Common :Epic :Legendary :Rare :Uncommon)
 DisjointClasses(:Cozy_campfire :Damage_trap :Launch_pad)
-DisjointClasses(:Epic :Legendary :Rare)
 DisjointClasses(:Floor :Ramp :Roof :Wall)
 DisjointClasses(:Hand_Cannon :Pistols :Revolver :Suppressed_pistol)
 DisjointClasses(:Heavy_ammo :Medium_ammo :Rockets :Shotgun_ammo :Small_ammo)
-DisjointClasses(:common :rare :uncommon)
-DisjointClasses(:epic :legendary :rare)
-DisjointClasses(:epic :rare :uncommon)
 )
