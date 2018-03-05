@@ -1,0 +1,284 @@
+Prefix(:=<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson>
+Annotation(rdfs:comment "This is my individual Ontology assignment for Database Management BUSI6516."^^rdfs:Literal)
+
+Declaration(Class(:Assault_Rifle))
+Declaration(Class(:Assault_rifle_with_scope))
+Declaration(Class(:Bandages))
+Declaration(Class(:Bolt_action_sniper_rifle))
+Declaration(Class(:Boogie_bomb))
+Declaration(Class(:Brick))
+Declaration(Class(:Building_Material))
+Declaration(Class(:Building_Object))
+Declaration(Class(:Burst_assualt_rifle))
+Declaration(Class(:Bush))
+Declaration(Class(:Chug_jug))
+Declaration(Class(:Consumables))
+Declaration(Class(:Cozy_campfire))
+Declaration(Class(:Crossbow))
+Declaration(Class(:Damage_trap))
+Declaration(Class(:Explosive))
+Declaration(Class(:Floor))
+Declaration(Class(:Grenade))
+Declaration(Class(:Grenade_Launcher))
+Declaration(Class(:Hand_Cannon))
+Declaration(Class(:Impulse_grenade))
+Declaration(Class(:Launch_pad))
+Declaration(Class(:M16))
+Declaration(Class(:Med_kit))
+Declaration(Class(:Minigun))
+Declaration(Class(:Other))
+Declaration(Class(:Pistol))
+Declaration(Class(:Pump_shotgun))
+Declaration(Class(:Ramp))
+Declaration(Class(:Revolver))
+Declaration(Class(:Rocket_launcher))
+Declaration(Class(:Roof))
+Declaration(Class(:SCAR))
+Declaration(Class(:SMG))
+Declaration(Class(:Semi_auto_sniper_rifle))
+Declaration(Class(:Shield_potion))
+Declaration(Class(:Shotgun))
+Declaration(Class(:Slurp_juice))
+Declaration(Class(:Small_shield_potion))
+Declaration(Class(:Smoke_grenade))
+Declaration(Class(:Sniper_rifles))
+Declaration(Class(:Steel))
+Declaration(Class(:Submachine_gun))
+Declaration(Class(:Suppressed_pistol))
+Declaration(Class(:Suppressed_submachine_gun))
+Declaration(Class(:Tactical_shotgun))
+Declaration(Class(:Wall))
+Declaration(Class(:Weapons))
+Declaration(Class(:Wood))
+Declaration(Class(:tactical_submachine_gun))
+Declaration(Class(<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>))
+
+############################
+#   Classes
+############################
+
+# Class: :Assault_Rifle (:Assault_Rifle)
+
+SubClassOf(:Assault_Rifle :Weapons)
+
+# Class: :Assault_rifle_with_scope (:Assault_rifle_with_scope)
+
+SubClassOf(:Assault_rifle_with_scope :Assault_Rifle)
+
+# Class: :Bandages (:Bandages)
+
+SubClassOf(:Bandages :Consumables)
+
+# Class: :Bolt_action_sniper_rifle (:Bolt_action_sniper_rifle)
+
+SubClassOf(:Bolt_action_sniper_rifle :Sniper_rifles)
+DisjointClasses(:Bolt_action_sniper_rifle :Semi_auto_sniper_rifle)
+
+# Class: :Boogie_bomb (:Boogie_bomb)
+
+SubClassOf(:Boogie_bomb :Grenade)
+
+# Class: :Brick (:Brick)
+
+SubClassOf(:Brick :Building_Material)
+
+# Class: :Building_Material (:Building_Material)
+
+
+# Class: :Building_Object (:Building_Object)
+
+
+# Class: :Burst_assualt_rifle (:Burst_assualt_rifle)
+
+SubClassOf(:Burst_assualt_rifle :Assault_Rifle)
+
+# Class: :Bush (:Bush)
+
+SubClassOf(:Bush :Consumables)
+
+# Class: :Chug_jug (:Chug_jug)
+
+SubClassOf(:Chug_jug :Consumables)
+
+# Class: :Consumables (:Consumables)
+
+
+# Class: :Cozy_campfire (:Cozy_campfire)
+
+SubClassOf(:Cozy_campfire <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+
+# Class: :Crossbow (:Crossbow)
+
+SubClassOf(:Crossbow :Other)
+
+# Class: :Damage_trap (:Damage_trap)
+
+SubClassOf(:Damage_trap <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+
+# Class: :Explosive (:Explosive)
+
+SubClassOf(:Explosive :Weapons)
+
+# Class: :Floor (:Floor)
+
+SubClassOf(:Floor :Building_Object)
+
+# Class: :Grenade (:Grenade)
+
+SubClassOf(:Grenade :Grenade)
+SubClassOf(:Grenade :Weapons)
+
+# Class: :Grenade_Launcher (:Grenade_Launcher)
+
+SubClassOf(:Grenade_Launcher :Explosive)
+DisjointClasses(:Grenade_Launcher :Rocket_launcher)
+
+# Class: :Hand_Cannon (:Hand_Cannon)
+
+SubClassOf(:Hand_Cannon :Pistol)
+
+# Class: :Impulse_grenade (:Impulse_grenade)
+
+SubClassOf(:Impulse_grenade :Grenade)
+
+# Class: :Launch_pad (:Launch_pad)
+
+SubClassOf(:Launch_pad <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+
+# Class: :M16 (:M16)
+
+SubClassOf(:M16 :Assault_Rifle)
+
+# Class: :Med_kit (:Med_kit)
+
+SubClassOf(:Med_kit :Consumables)
+
+# Class: :Minigun (:Minigun)
+
+SubClassOf(:Minigun :SMG)
+
+# Class: :Other (:Other)
+
+SubClassOf(:Other :Weapons)
+
+# Class: :Pistol (:Pistol)
+
+SubClassOf(:Pistol :Pistol)
+SubClassOf(:Pistol :Weapons)
+
+# Class: :Pump_shotgun (:Pump_shotgun)
+
+SubClassOf(:Pump_shotgun :Shotgun)
+DisjointClasses(:Pump_shotgun :Tactical_shotgun)
+
+# Class: :Ramp (:Ramp)
+
+SubClassOf(:Ramp :Building_Object)
+
+# Class: :Revolver (:Revolver)
+
+SubClassOf(:Revolver :Pistol)
+
+# Class: :Rocket_launcher (:Rocket_launcher)
+
+SubClassOf(:Rocket_launcher :Explosive)
+
+# Class: :Roof (:Roof)
+
+SubClassOf(:Roof :Building_Object)
+
+# Class: :SCAR (:SCAR)
+
+SubClassOf(:SCAR :Assault_Rifle)
+
+# Class: :SMG (:SMG)
+
+SubClassOf(:SMG :Weapons)
+
+# Class: :Semi_auto_sniper_rifle (:Semi_auto_sniper_rifle)
+
+SubClassOf(:Semi_auto_sniper_rifle :Sniper_rifles)
+
+# Class: :Shield_potion (:Shield_potion)
+
+SubClassOf(:Shield_potion :Consumables)
+
+# Class: :Shotgun (:Shotgun)
+
+SubClassOf(:Shotgun :Weapons)
+
+# Class: :Slurp_juice (:Slurp_juice)
+
+SubClassOf(:Slurp_juice :Consumables)
+
+# Class: :Small_shield_potion (:Small_shield_potion)
+
+SubClassOf(:Small_shield_potion :Consumables)
+
+# Class: :Smoke_grenade (:Smoke_grenade)
+
+SubClassOf(:Smoke_grenade :Grenade)
+
+# Class: :Sniper_rifles (:Sniper_rifles)
+
+SubClassOf(:Sniper_rifles :Weapons)
+
+# Class: :Steel (:Steel)
+
+SubClassOf(:Steel :Building_Material)
+
+# Class: :Submachine_gun (:Submachine_gun)
+
+SubClassOf(:Submachine_gun :SMG)
+
+# Class: :Suppressed_pistol (:Suppressed_pistol)
+
+SubClassOf(:Suppressed_pistol :Pistol)
+
+# Class: :Suppressed_submachine_gun (:Suppressed_submachine_gun)
+
+SubClassOf(:Suppressed_submachine_gun :SMG)
+
+# Class: :Tactical_shotgun (:Tactical_shotgun)
+
+SubClassOf(:Tactical_shotgun :Shotgun)
+
+# Class: :Wall (:Wall)
+
+SubClassOf(:Wall :Building_Object)
+
+# Class: :Weapons (:Weapons)
+
+
+# Class: :Wood (:Wood)
+
+SubClassOf(:Wood :Building_Material)
+
+# Class: :tactical_submachine_gun (:tactical_submachine_gun)
+
+SubClassOf(:tactical_submachine_gun :SMG)
+
+# Class: <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment> (<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+
+
+
+DisjointClasses(:Assault_Rifle :Explosive :Grenade :Other :Pistol :SMG :Shotgun :Sniper_rifles)
+DisjointClasses(:Assault_rifle_with_scope :Burst_assualt_rifle :M16 :SCAR)
+DisjointClasses(:Bandages :Bush :Chug_jug :Med_kit :Shield_potion :Slurp_juice :Small_shield_potion)
+DisjointClasses(:Boogie_bomb :Grenade :Impulse_grenade :Smoke_grenade)
+DisjointClasses(:Brick :Steel :Wood)
+DisjointClasses(:Building_Material :Building_Object :Consumables :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+DisjointClasses(:Building_Material :Building_Object :Consumables <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+DisjointClasses(:Cozy_campfire :Damage_trap :Launch_pad)
+DisjointClasses(:Floor :Ramp :Roof :Wall)
+DisjointClasses(:Hand_Cannon :Pistol :Revolver :Suppressed_pistol)
+DisjointClasses(:Minigun :Submachine_gun :Suppressed_submachine_gun :tactical_submachine_gun)
+)
