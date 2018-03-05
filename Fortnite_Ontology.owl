@@ -9,6 +9,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 Ontology(<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson>
 Annotation(rdfs:comment "This is my individual Ontology assignment for Database Management BUSI6516."^^rdfs:Literal)
 
+Declaration(Class(:Ammo))
 Declaration(Class(:Assault_Rifle))
 Declaration(Class(:Assault_rifle_with_scope))
 Declaration(Class(:Bandages))
@@ -24,46 +25,101 @@ Declaration(Class(:Consumables))
 Declaration(Class(:Cozy_campfire))
 Declaration(Class(:Crossbow))
 Declaration(Class(:Damage_trap))
+Declaration(Class(:Epic))
 Declaration(Class(:Explosive))
+Declaration(Class(:Explosive_grenade))
 Declaration(Class(:Floor))
 Declaration(Class(:Grenade))
 Declaration(Class(:Grenade_Launcher))
 Declaration(Class(:Hand_Cannon))
+Declaration(Class(:Heavy_ammo))
+Declaration(Class(:Hunting_rifle))
 Declaration(Class(:Impulse_grenade))
 Declaration(Class(:Launch_pad))
+Declaration(Class(:Legendary))
 Declaration(Class(:M16))
 Declaration(Class(:Med_kit))
+Declaration(Class(:Medium_ammo))
 Declaration(Class(:Minigun))
 Declaration(Class(:Other))
 Declaration(Class(:Pistol))
+Declaration(Class(:Pistols))
 Declaration(Class(:Pump_shotgun))
 Declaration(Class(:Ramp))
+Declaration(Class(:Rare))
 Declaration(Class(:Revolver))
 Declaration(Class(:Rocket_launcher))
+Declaration(Class(:Rockets))
 Declaration(Class(:Roof))
 Declaration(Class(:SCAR))
 Declaration(Class(:SMG))
 Declaration(Class(:Semi_auto_sniper_rifle))
 Declaration(Class(:Shield_potion))
 Declaration(Class(:Shotgun))
+Declaration(Class(:Shotgun_ammo))
 Declaration(Class(:Slurp_juice))
+Declaration(Class(:Small_ammo))
 Declaration(Class(:Small_shield_potion))
 Declaration(Class(:Smoke_grenade))
 Declaration(Class(:Sniper_rifles))
 Declaration(Class(:Steel))
-Declaration(Class(:Submachine_gun))
 Declaration(Class(:Suppressed_pistol))
 Declaration(Class(:Suppressed_submachine_gun))
 Declaration(Class(:Tactical_shotgun))
 Declaration(Class(:Wall))
 Declaration(Class(:Weapons))
 Declaration(Class(:Wood))
+Declaration(Class(:common))
+Declaration(Class(:epic))
+Declaration(Class(:legendary))
+Declaration(Class(:rare))
 Declaration(Class(:tactical_submachine_gun))
+Declaration(Class(:uncommon))
 Declaration(Class(<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>))
+Declaration(ObjectProperty(:hasRarity))
+Declaration(ObjectProperty(:isMadeOf))
+Declaration(ObjectProperty(:isTypeOf))
+Declaration(ObjectProperty(:isUsedBy))
+Declaration(ObjectProperty(:isUsedToMake))
+Declaration(ObjectProperty(:uses))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :hasRarity (:hasRarity)
+
+ObjectPropertyDomain(:hasRarity :Weapons)
+
+# Object Property: :isMadeOf (:isMadeOf)
+
+InverseObjectProperties(:isMadeOf :isUsedToMake)
+ObjectPropertyDomain(:isMadeOf :Building_Object)
+ObjectPropertyRange(:isMadeOf :Building_Material)
+
+# Object Property: :isUsedBy (:isUsedBy)
+
+InverseObjectProperties(:isUsedBy :uses)
+ObjectPropertyDomain(:isUsedBy :Ammo)
+ObjectPropertyRange(:isUsedBy :Weapons)
+
+# Object Property: :isUsedToMake (:isUsedToMake)
+
+ObjectPropertyDomain(:isUsedToMake :Building_Material)
+ObjectPropertyRange(:isUsedToMake :Building_Object)
+
+# Object Property: :uses (:uses)
+
+ObjectPropertyDomain(:uses :Weapons)
+ObjectPropertyRange(:uses :Ammo)
+
 
 ############################
 #   Classes
 ############################
+
+# Class: :Ammo (:Ammo)
+
 
 # Class: :Assault_Rifle (:Assault_Rifle)
 
@@ -123,9 +179,19 @@ SubClassOf(:Crossbow :Other)
 
 SubClassOf(:Damage_trap <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 
+# Class: :Epic (:Epic)
+
+SubClassOf(:Epic :Bolt_action_sniper_rifle)
+SubClassOf(:Epic :Semi_auto_sniper_rifle)
+DisjointClasses(:Epic :Legendary)
+
 # Class: :Explosive (:Explosive)
 
 SubClassOf(:Explosive :Weapons)
+
+# Class: :Explosive_grenade (:Explosive_grenade)
+
+SubClassOf(:Explosive_grenade :Grenade)
 
 # Class: :Floor (:Floor)
 
@@ -143,7 +209,15 @@ DisjointClasses(:Grenade_Launcher :Rocket_launcher)
 
 # Class: :Hand_Cannon (:Hand_Cannon)
 
-SubClassOf(:Hand_Cannon :Pistol)
+SubClassOf(:Hand_Cannon :Pistols)
+
+# Class: :Heavy_ammo (:Heavy_ammo)
+
+SubClassOf(:Heavy_ammo :Ammo)
+
+# Class: :Hunting_rifle (:Hunting_rifle)
+
+SubClassOf(:Hunting_rifle :Sniper_rifles)
 
 # Class: :Impulse_grenade (:Impulse_grenade)
 
@@ -153,6 +227,11 @@ SubClassOf(:Impulse_grenade :Grenade)
 
 SubClassOf(:Launch_pad <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 
+# Class: :Legendary (:Legendary)
+
+SubClassOf(:Legendary :Bolt_action_sniper_rifle)
+SubClassOf(:Legendary :Semi_auto_sniper_rifle)
+
 # Class: :M16 (:M16)
 
 SubClassOf(:M16 :Assault_Rifle)
@@ -161,9 +240,13 @@ SubClassOf(:M16 :Assault_Rifle)
 
 SubClassOf(:Med_kit :Consumables)
 
+# Class: :Medium_ammo (:Medium_ammo)
+
+SubClassOf(:Medium_ammo :Ammo)
+
 # Class: :Minigun (:Minigun)
 
-SubClassOf(:Minigun :SMG)
+SubClassOf(:Minigun :Other)
 
 # Class: :Other (:Other)
 
@@ -171,8 +254,12 @@ SubClassOf(:Other :Weapons)
 
 # Class: :Pistol (:Pistol)
 
-SubClassOf(:Pistol :Pistol)
-SubClassOf(:Pistol :Weapons)
+SubClassOf(:Pistol :Pistols)
+
+# Class: :Pistols (:Pistols)
+
+SubClassOf(:Pistols :Pistols)
+SubClassOf(:Pistols :Weapons)
 
 # Class: :Pump_shotgun (:Pump_shotgun)
 
@@ -183,13 +270,21 @@ DisjointClasses(:Pump_shotgun :Tactical_shotgun)
 
 SubClassOf(:Ramp :Building_Object)
 
+# Class: :Rare (:Rare)
+
+SubClassOf(:Rare :Bolt_action_sniper_rifle)
+
 # Class: :Revolver (:Revolver)
 
-SubClassOf(:Revolver :Pistol)
+SubClassOf(:Revolver :Pistols)
 
 # Class: :Rocket_launcher (:Rocket_launcher)
 
 SubClassOf(:Rocket_launcher :Explosive)
+
+# Class: :Rockets (:Rockets)
+
+SubClassOf(:Rockets :Ammo)
 
 # Class: :Roof (:Roof)
 
@@ -215,9 +310,17 @@ SubClassOf(:Shield_potion :Consumables)
 
 SubClassOf(:Shotgun :Weapons)
 
+# Class: :Shotgun_ammo (:Shotgun_ammo)
+
+SubClassOf(:Shotgun_ammo :Ammo)
+
 # Class: :Slurp_juice (:Slurp_juice)
 
 SubClassOf(:Slurp_juice :Consumables)
+
+# Class: :Small_ammo (:Small_ammo)
+
+SubClassOf(:Small_ammo :Ammo)
 
 # Class: :Small_shield_potion (:Small_shield_potion)
 
@@ -235,13 +338,9 @@ SubClassOf(:Sniper_rifles :Weapons)
 
 SubClassOf(:Steel :Building_Material)
 
-# Class: :Submachine_gun (:Submachine_gun)
-
-SubClassOf(:Submachine_gun :SMG)
-
 # Class: :Suppressed_pistol (:Suppressed_pistol)
 
-SubClassOf(:Suppressed_pistol :Pistol)
+SubClassOf(:Suppressed_pistol :Pistols)
 
 # Class: :Suppressed_submachine_gun (:Suppressed_submachine_gun)
 
@@ -262,15 +361,82 @@ SubClassOf(:Wall :Building_Object)
 
 SubClassOf(:Wood :Building_Material)
 
+# Class: :common (:common)
+
+SubClassOf(:common :Burst_assualt_rifle)
+SubClassOf(:common :Explosive_grenade)
+SubClassOf(:common :M16)
+SubClassOf(:common :Pistol)
+SubClassOf(:common :Pump_shotgun)
+SubClassOf(:common :Revolver)
+SubClassOf(:common :Suppressed_submachine_gun)
+DisjointClasses(:common :uncommon)
+
+# Class: :epic (:epic)
+
+SubClassOf(:epic :Assault_rifle_with_scope)
+SubClassOf(:epic :Crossbow)
+SubClassOf(:epic :Grenade_Launcher)
+SubClassOf(:epic :Hand_Cannon)
+SubClassOf(:epic :Minigun)
+SubClassOf(:epic :Rocket_launcher)
+SubClassOf(:epic :SCAR)
+SubClassOf(:epic :Suppressed_pistol)
+SubClassOf(:epic :Tactical_shotgun)
+SubClassOf(:epic :tactical_submachine_gun)
+DisjointClasses(:epic :legendary)
+DisjointClasses(:epic :rare)
+
+# Class: :legendary (:legendary)
+
+SubClassOf(:legendary :Grenade_Launcher)
+SubClassOf(:legendary :Hand_Cannon)
+SubClassOf(:legendary :Minigun)
+SubClassOf(:legendary :Rocket_launcher)
+SubClassOf(:legendary :SCAR)
+SubClassOf(:legendary :Smoke_grenade)
+SubClassOf(:legendary :Suppressed_pistol)
+SubClassOf(:legendary :tactical_submachine_gun)
+
+# Class: :rare (:rare)
+
+SubClassOf(:rare :Assault_rifle_with_scope)
+SubClassOf(:rare :Boogie_bomb)
+SubClassOf(:rare :Burst_assualt_rifle)
+SubClassOf(:rare :Crossbow)
+SubClassOf(:rare :Grenade_Launcher)
+SubClassOf(:rare :Hunting_rifle)
+SubClassOf(:rare :Impulse_grenade)
+SubClassOf(:rare :M16)
+SubClassOf(:rare :Pistol)
+SubClassOf(:rare :Revolver)
+SubClassOf(:rare :Rocket_launcher)
+SubClassOf(:rare :Suppressed_submachine_gun)
+SubClassOf(:rare :Tactical_shotgun)
+SubClassOf(:rare :tactical_submachine_gun)
+DisjointClasses(:rare :uncommon)
+
 # Class: :tactical_submachine_gun (:tactical_submachine_gun)
 
 SubClassOf(:tactical_submachine_gun :SMG)
+
+# Class: :uncommon (:uncommon)
+
+SubClassOf(:uncommon :Burst_assualt_rifle)
+SubClassOf(:uncommon :Hunting_rifle)
+SubClassOf(:uncommon :M16)
+SubClassOf(:uncommon :Pistol)
+SubClassOf(:uncommon :Pump_shotgun)
+SubClassOf(:uncommon :Revolver)
+SubClassOf(:uncommon :Suppressed_submachine_gun)
+SubClassOf(:uncommon :Tactical_shotgun)
 
 # Class: <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment> (<http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 
 
 
-DisjointClasses(:Assault_Rifle :Explosive :Grenade :Other :Pistol :SMG :Shotgun :Sniper_rifles)
+DisjointClasses(:Ammo :Building_Material :Building_Object :Consumables :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+DisjointClasses(:Assault_Rifle :Explosive :Grenade :Other :Pistols :SMG :Shotgun :Sniper_rifles)
 DisjointClasses(:Assault_rifle_with_scope :Burst_assualt_rifle :M16 :SCAR)
 DisjointClasses(:Bandages :Bush :Chug_jug :Med_kit :Shield_potion :Slurp_juice :Small_shield_potion)
 DisjointClasses(:Boogie_bomb :Grenade :Impulse_grenade :Smoke_grenade)
@@ -278,7 +444,11 @@ DisjointClasses(:Brick :Steel :Wood)
 DisjointClasses(:Building_Material :Building_Object :Consumables :Weapons <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 DisjointClasses(:Building_Material :Building_Object :Consumables <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
 DisjointClasses(:Cozy_campfire :Damage_trap :Launch_pad)
+DisjointClasses(:Epic :Legendary :Rare)
 DisjointClasses(:Floor :Ramp :Roof :Wall)
-DisjointClasses(:Hand_Cannon :Pistol :Revolver :Suppressed_pistol)
-DisjointClasses(:Minigun :Submachine_gun :Suppressed_submachine_gun :tactical_submachine_gun)
+DisjointClasses(:Hand_Cannon :Pistols :Revolver :Suppressed_pistol)
+DisjointClasses(:Heavy_ammo :Medium_ammo :Rockets :Shotgun_ammo :Small_ammo)
+DisjointClasses(:common :rare :uncommon)
+DisjointClasses(:epic :legendary :rare)
+DisjointClasses(:epic :rare :uncommon)
 )
