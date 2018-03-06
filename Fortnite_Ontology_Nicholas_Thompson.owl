@@ -146,31 +146,50 @@ Declaration(ObjectProperty(:uses))
 #   Object Properties
 ############################
 
+# Object Property: :hasDamageModel (:hasDamageModel)
+
+AnnotationAssertion(rdfs:isDefinedBy :hasDamageModel "This is an object property that displays the relationship between a weapon and its damage type: hit scan or projectile.")
+
 # Object Property: :hasRarity (:hasRarity)
 
+AnnotationAssertion(rdfs:isDefinedBy :hasRarity "This property displays the rarity of the object.")
 FunctionalObjectProperty(:hasRarity)
 ObjectPropertyDomain(:hasRarity :Weapons)
 ObjectPropertyRange(:hasRarity :Rarity)
 
 # Object Property: :isMadeOf (:isMadeOf)
 
+AnnotationAssertion(rdfs:isDefinedBy :isMadeOf "This property is specific to the class building_object and displays the Object_material that it is made from.")
 InverseObjectProperties(:isMadeOf :isUsedToMake)
 ObjectPropertyDomain(:isMadeOf :Building_Object)
 ObjectPropertyRange(:isMadeOf :Building_Material)
 
+# Object Property: :isTypeOf (:isTypeOf)
+
+AnnotationAssertion(rdfs:isDefinedBy :isTypeOf "this property is an extion of a 'is a' object property.")
+
 # Object Property: :isUsedBy (:isUsedBy)
 
+AnnotationAssertion(rdfs:isDefinedBy :isUsedBy "This property is used to display the relationship between one individual that uses the other. For example ammo is used by a weapon.")
 InverseObjectProperties(:isUsedBy :uses)
 ObjectPropertyDomain(:isUsedBy :Ammo)
 ObjectPropertyRange(:isUsedBy :Weapons)
 
 # Object Property: :isUsedToMake (:isUsedToMake)
 
+AnnotationAssertion(rdfs:isDefinedBy :isUsedToMake "This object property is the inverse of 'isMadeOf' and is specific to the relationship between building_object and Building_material.")
 ObjectPropertyDomain(:isUsedToMake :Building_Material)
 ObjectPropertyRange(:isUsedToMake :Building_Object)
 
+# Object Property: :placed_on (:placed_on)
+
+AnnotationAssertion(rdfs:isDefinedBy :placed_on "This object property is specific to the class 'Traps/Equipment' and shows the building_object that is required for the trap or equipment to operate.")
+ObjectPropertyDomain(:placed_on <http://www.semanticweb.org/Fortnite_Ontology_Nicholas_Thompson#Traps/Equipment>)
+ObjectPropertyRange(:placed_on ObjectSomeValuesFrom(:placed_on :Building_Object))
+
 # Object Property: :uses (:uses)
 
+AnnotationAssertion(rdfs:isDefinedBy :uses "This is the opposite of the object property 'isUsedBy' and shows the relationship between individuals that rely on each other. For example, a weapon uses ammo.")
 ObjectPropertyDomain(:uses :Weapons)
 ObjectPropertyRange(:uses :Ammo)
 
@@ -213,6 +232,10 @@ SubClassOf(:Boogie_bomb ObjectAllValuesFrom(:hasRarity :Rare))
 
 AnnotationAssertion(rdfs:isDefinedBy :Brick "This is the second strongest building material and is collected from destroying rocks or existing brick buildings.")
 SubClassOf(:Brick :Building_Material)
+SubClassOf(:Brick ObjectSomeValuesFrom(:isUsedToMake :Brick_floor))
+SubClassOf(:Brick ObjectSomeValuesFrom(:isUsedToMake :Brick_ramp))
+SubClassOf(:Brick ObjectSomeValuesFrom(:isUsedToMake :Brick_roof))
+SubClassOf(:Brick ObjectSomeValuesFrom(:isUsedToMake :Brick_wall))
 
 # Class: :Brick_floor (:Brick_floor)
 
@@ -372,6 +395,7 @@ DisjointClasses(:Epic_Minigun :Legendary_Minigun)
 
 # Class: :Epic_Rocket_Launcher (:Epic_Rocket_Launcher)
 
+AnnotationAssertion(rdfs:comment :Epic_Rocket_Launcher "epic variant of the rocket launcher")
 SubClassOf(:Epic_Rocket_Launcher :Rocket_launcher)
 SubClassOf(:Epic_Rocket_Launcher ObjectSomeValuesFrom(:isTypeOf :Explosive_Launchers))
 SubClassOf(:Epic_Rocket_Launcher ObjectAllValuesFrom(:hasRarity :Epic))
@@ -515,6 +539,7 @@ SubClassOf(:Legendary_Minigun ObjectAllValuesFrom(:hasRarity :Legendary))
 
 # Class: :Legendary_Rocket_Launcher (:Legendary_Rocket_Launcher)
 
+AnnotationAssertion(rdfs:comment :Legendary_Rocket_Launcher "legendary rocket launcher")
 SubClassOf(:Legendary_Rocket_Launcher :Rocket_launcher)
 SubClassOf(:Legendary_Rocket_Launcher ObjectSomeValuesFrom(:isTypeOf :Explosive_Launchers))
 SubClassOf(:Legendary_Rocket_Launcher ObjectAllValuesFrom(:hasRarity :Legendary))
@@ -649,6 +674,7 @@ SubClassOf(:Rare_Revolver ObjectAllValuesFrom(:hasRarity :Rare))
 
 # Class: :Rare_Rocket_Launcher (:Rare_Rocket_Launcher)
 
+AnnotationAssertion(rdfs:comment :Rare_Rocket_Launcher "rare rocket launcher")
 SubClassOf(:Rare_Rocket_Launcher :Rocket_launcher)
 SubClassOf(:Rare_Rocket_Launcher ObjectSomeValuesFrom(:isTypeOf :Explosive_Launchers))
 SubClassOf(:Rare_Rocket_Launcher ObjectAllValuesFrom(:hasRarity :Rare))
@@ -797,6 +823,10 @@ SubClassOf(:Sniper_rifles ObjectAllValuesFrom(:hasDamageModel :Projectile))
 
 AnnotationAssertion(rdfs:isDefinedBy :Steel "This is the strongest building material and is collected from destroying objects such as shipping containers.")
 SubClassOf(:Steel :Building_Material)
+SubClassOf(:Steel ObjectSomeValuesFrom(:isUsedToMake :Steel_floor))
+SubClassOf(:Steel ObjectSomeValuesFrom(:isUsedToMake :Steel_ramp))
+SubClassOf(:Steel ObjectSomeValuesFrom(:isUsedToMake :Steel_roof))
+SubClassOf(:Steel ObjectSomeValuesFrom(:isUsedToMake :Steel_wall))
 
 # Class: :Steel_floor (:Steel_floor)
 
@@ -901,6 +931,10 @@ AnnotationAssertion(rdfs:isDefinedBy :Weapons "These are tools used by players t
 
 AnnotationAssertion(rdfs:isDefinedBy :Wood "This is the weakest building material and is collected from destroying things like trees.")
 SubClassOf(:Wood :Building_Material)
+SubClassOf(:Wood ObjectSomeValuesFrom(:isUsedToMake :Wood_floor))
+SubClassOf(:Wood ObjectSomeValuesFrom(:isUsedToMake :Wood_ramp))
+SubClassOf(:Wood ObjectSomeValuesFrom(:isUsedToMake :Wood_roof))
+SubClassOf(:Wood ObjectSomeValuesFrom(:isUsedToMake :Wood_wall))
 
 # Class: :Wood_floor (:Wood_floor)
 
